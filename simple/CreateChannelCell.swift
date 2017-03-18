@@ -28,3 +28,7 @@ class CreateChannelCell: UITableViewCell {
   @IBOutlet weak var createChannelButton: UIButton!
   
 }
+
+//ff
+//varregege
+//varthiaiai the new macbook pro this is a shit product
