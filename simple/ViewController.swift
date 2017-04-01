@@ -114,11 +114,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var locationlabel: UILabel!
     
-    @IBAction func formsButton(_ sender: Any) {
     
-        self.performSegue(withIdentifier: "formsButton", sender: nil)
-    
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

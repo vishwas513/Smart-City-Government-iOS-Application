@@ -12,7 +12,10 @@ import UIKit
 class FormsViewController: UIViewController
 {
 
-
+    
+    
+    
+    var titleStringViaSegue: String!
     
     @IBAction func formsBack(_ sender: Any) {
     
@@ -26,6 +29,7 @@ class FormsViewController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.navigationController?.isNavigationBarHidden = true
         let url = NSURL (string: "https://goo.gl/forms/5r1mI2ApxQsUrBEG2");
         let requestObj = NSURLRequest(url: url! as URL);
         webview.loadRequest(requestObj as URLRequest);

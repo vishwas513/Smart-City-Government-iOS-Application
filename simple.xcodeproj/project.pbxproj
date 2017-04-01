@@ -26,6 +26,7 @@
 		E947F9D61E7DED3800CBAE73 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E947F9D51E7DED3800CBAE73 /* TableViewCell.swift */; };
 		E947F9D81E7DED4200CBAE73 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E947F9D71E7DED4200CBAE73 /* NewViewController.swift */; };
 		E947F9DA1E7DED6300CBAE73 /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E947F9D91E7DED6300CBAE73 /* ChartsViewController.swift */; };
+		E947F9DC1E7F38AF00CBAE73 /* FormsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E947F9DB1E7F38AF00CBAE73 /* FormsListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		E947F9D51E7DED3800CBAE73 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		E947F9D71E7DED4200CBAE73 /* NewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		E947F9D91E7DED6300CBAE73 /* ChartsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
+		E947F9DB1E7F38AF00CBAE73 /* FormsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormsListViewController.swift; sourceTree = "<group>"; };
 		F651B0241ED59F25F16FC70F /* Pods-simple.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple.debug.xcconfig"; path = "Pods/Target Support Files/Pods-simple/Pods-simple.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 				6F914F961DEBDC7600F50222 /* ViewController.swift */,
 				6F4116A71E750B6200DEB05E /* LoginViewController.swift */,
 				E947F9D91E7DED6300CBAE73 /* ChartsViewController.swift */,
+				E947F9DB1E7F38AF00CBAE73 /* FormsListViewController.swift */,
 				E947F9D71E7DED4200CBAE73 /* NewViewController.swift */,
 				6F4116A11E74FF1600DEB05E /* ChatViewController.swift */,
 				E947F9D51E7DED3800CBAE73 /* TableViewCell.swift */,
@@ -269,6 +272,7 @@
 				6F4116B21E763DBF00DEB05E /* FormsViewController.swift in Sources */,
 				6F4FD3D31DEBE04800C3A75D /* LocationServices.swift in Sources */,
 				6F4116A21E74FF1600DEB05E /* ChatViewController.swift in Sources */,
+				E947F9DC1E7F38AF00CBAE73 /* FormsListViewController.swift in Sources */,
 				6F4116A41E74FFD200DEB05E /* UIImage+Gif.swift in Sources */,
 				6F4116B41E76727F00DEB05E /* DashboardViewController.swift in Sources */,
 				E947F9D81E7DED4200CBAE73 /* NewViewController.swift in Sources */,

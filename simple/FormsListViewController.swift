@@ -2,24 +2,23 @@
 //  ViewController.swift
 //  ronTableViewMedium
 //
-//  Created by Ronald Mourant on 4/27/15.
+//  Cr/Users/vishwasmukund/Desktop/iOS templates/Table click handler/A-Simple-Table-View-Example-master/ronTableViewMedium/ChartsViewController.swifteated by Ronald Mourant on 4/27/15.
 //  Copyright (c) 2015 Ron Mourant. All rights reserved.
 //
 
 import UIKit
 
-class ChartsViewController: UIViewController {
+class FormsListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var objects = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.objects.append("Crime Rate")
-        self.objects.append("Unemployment Rate")
-        self.objects.append("Traffic Growth Rate")
-        self.objects.append("GDP")
-        
+        self.objects.append("DMV form")
+        self.objects.append("Buidling permit form")
+        self.objects.append("Form W2")
+      
     }
     
     func numberOfSectionsInTableView(_ tableView: UITableView) -> Int
@@ -53,7 +52,7 @@ class ChartsViewController: UIViewController {
     {
         if (segue.identifier == "showView")
         {
-            let upcoming: NewViewController = segue.destination as! NewViewController
+            let upcoming: FormsViewController = segue.destination as! FormsViewController
             
             let indexPath = self.tableView.indexPathForSelectedRow!
             
