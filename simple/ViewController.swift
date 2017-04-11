@@ -10,11 +10,12 @@ import UIKit
 import CoreLocation
 import Foundation
 //import FacebookLogin
+import ILPDFKit
 
 
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
-
+    
     var locationManager: CLLocationManager = CLLocationManager()
     var startLocation: CLLocation!
     var areaname:String = ""
@@ -32,80 +33,128 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet var output: UILabel!
     @IBAction func loginPage(_ sender: Any) {
-    
+        
         self.performSegue(withIdentifier: "loginpage", sender: nil)
         
         
         
     }
     @IBAction func signupPage(_ sender: Any) {
-    
-    self.performSegue(withIdentifier: "signuppage", sender: nil)
-    
-    
+        
+        self.performSegue(withIdentifier: "signuppage", sender: nil)
+        
+        
     }
     @IBAction func backLogin(_ sender: Any) {
-    
-    self.performSegue(withIdentifier: "loginBack", sender: nil)
-    
+        
+        self.performSegue(withIdentifier: "loginBack", sender: nil)
+        
     }
     @IBAction func onclicklogin(_ sender: Any) {
-    
+        
         output2.text = "Login successful"
         output2.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-    self.performSegue(withIdentifier: "loginmenu", sender: nil)
+        self.performSegue(withIdentifier: "loginmenu", sender: nil)
         
-    
-    
+        
+        
     }
     
     @IBAction func backSignup(_ sender: Any) {
-    
+        
         self.performSegue(withIdentifier: "signupBack", sender: nil)
         
-    
+        
     }
     
     
     @IBAction func oc(_ sender: Any) {
-        /*
+        
         if((fullName.text != nil)||(email.text != nil)||(password.text != nil)||bday.text != nil){
             
             let jsonObject = ["fullName":fullName.text!,"email":email.text!,"password" :password.text! as! AnyObject] as [String : Any]
             
             let jsonObject2 = ["emailId":"foo","password":"foo"]
             print("calling senddata")
-            senddata(jsonObject: jsonObject2.description)
+            var resp = senddata(jsonObject: jsonObject.description)
             
-            output.text = "Sign up Successful"
-            output.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+            
+            let nc = NotificationCenter.default // Note that default is now a property, not a method call
+            nc.addObserver(forName:Notification.Name(rawValue:"MyNotification"),
+                           object:nil, queue:nil,
+                           using:catchNotification)
+            
+            
+            
+            
+            if(resp != ""){
+            print("s=\(resp)")
+            }
+            
+            output.text = "Incorrect Username/ Password, please try again"
+            output.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
             //sleep(2)
- */
-            //output.isHidden = true
-            self.performSegue(withIdentifier: "signupmenu", sender: nil)
             
-        } 
+            //output.isHidden = true
+           // self.performSegue(withIdentifier: "signupmenu", sender: nil)
+            
+        }
         
-        
-    @IBAction func logout(_ sender: Any) {
+    }
     
+    func catchNotification(notification:Notification) -> Void {
+        print("Catch notification")
+        
+        guard let userInfo = notification.userInfo,
+            let message  = userInfo["message"] as? String,
+            let date     = userInfo["date"]    as? Date else {
+                print("No userInfo found in notification")
+                return
+        }
+        
+        
+                                     print("\(message) received at \(date)")
+        
+        if(message != ""){
+        
+            DispatchQueue.main.async{
+                
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "menu")
+                self.present(controller, animated: true, completion: nil)
+                
+            }
+            
+        
+        }
+//            preferredStyle: UIAlertControllerStyle.alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+       // self.present(alert, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    
+    @IBAction func logout(_ sender: Any) {
+        
         self.performSegue(withIdentifier: "logout", sender: nil)
     }
     
     @IBAction func issuebutton(_ sender: Any) {
-    self.performSegue(withIdentifier: "issues", sender: nil)
+        self.performSegue(withIdentifier: "issues", sender: nil)
     }
     
     @IBAction func chatbutton(_ sender: Any) {
     }
     
     @IBAction func issueback(_ sender: Any) {
-    
+        
         self.performSegue(withIdentifier: "issueback", sender: nil)
     }
     
     @IBAction func chatButton(_ sender: Any) {
-    
+        
         
         self.performSegue(withIdentifier: "chatButton", sender: nil)
         
@@ -113,6 +162,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBOutlet var locationlabel: UILabel!
+    var pdfVC : ILPDFViewController? = nil
+    
+    // self.present(controller, animated: true, completion: nil)
+    
+    
+    
+    //    @IBAction func pdf(_ sender: Any) {
+    //
+    //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    //        let controller = storyboard.instantiateViewController(withIdentifier: "ncc")
+    //
+    //        let storyboard2 = UIStoryboard(name: "Main", bundle: nil)
+    //        let controller2 = storyboard.instantiateViewController(withIdentifier: "rty")
+    //
+    //        pdfVC = (controller as? UINavigationController)?.viewControllers.first as? ILPDFViewController
+    //        let document = ILPDFDocument(resource:"testA")
+    //        pdfVC?.document = document
+    //        let printButton = UIBarButtonItem(title: "Save Static PDF", style: .plain, target: self, action: #selector(print))
+    //        pdfVC?.navigationItem.setRightBarButton(printButton, animated: false)
+    //
+    //      self.present(controller, animated: true, completion: nil)
+    //
+    //
+    //
+    //    }
+    
+    
+    
     
     
     
@@ -129,7 +206,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
         
-        print("area \(areaname)")
+        //   print("area \(areaname)")
         locationManager.stopUpdatingLocation()
         
         //Facebook Login implmentation
@@ -138,11 +215,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         //loginButton.center = view.center
         
-       // view.addSubview(loginButton)
+        // view.addSubview(loginButton)
         
         
     }
-
+    
+    //    @objc func print(sender:AnyObject?) {
+    //        let data = pdfVC?.document?.savedStaticPDFData()
+    //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    //        let controller = storyboard.instantiateViewController(withIdentifier: "ncc")
+    //
+    //        let savedVCDocument = ILPDFDocument(data: data!)
+    //
+    //        let alert = UIAlertController(title: "Will Save PDF", message: "The PDF file displayed next is a static version of the previous file, but with the form values added. The starting PDF has not been modified and this static pdf no longer contains forms.", preferredStyle: .alert)
+    //
+    //        let action = UIAlertAction(title: "Show Saved Static PDF", style: .default) { _ in
+    //            alert.dismiss(animated: true, completion: nil)
+    //            self.pdfVC?.document = savedVCDocument
+    //            self.pdfVC?.navigationItem.setRightBarButton(nil, animated: false)
+    //        }
+    //
+    //        alert.addAction(action)
+    //        controller.present(alert, animated: true, completion: nil)
+    //    }
+    
     
     @objc(locationManager:didUpdateLocations:) func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
@@ -168,7 +264,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 area = (pm!.locality)!
                 self.areaname = area
                 self.locationlabel.text = self.areaname
-                print(self.areaname)
+                //       print(sender: self.areaname)
                 
             }
             else {
@@ -206,32 +302,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-}
+    }
     
     
     func getDate () -> String{
-    
-    var date = NSDate()
-    let string2 = NSDate().description
+        
+        var date = NSDate()
+        let string2 = NSDate().description
         let dateFormatter = DateFormatter()
         let string = dateFormatter.string(from: date as Date)
-        print("string\(string2)")
+        //   print("string\(string2)")
         return string2
-       
+        
     }
     
-    func senddata (jsonObject:String) {
+    func senddata (jsonObject:String) -> String{
         
-   // let jsonData = JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted, error: nil)
+        // let jsonData = JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted, error: nil)
         
-        print("calling senddata 2")
-
-        
+        //   print("calling senddata 2")
         
         
-    let url = NSURL(string: "http://ec2-52-21-74-14.compute-1.amazonaws.com:3000/api/addUser")!
-    let url2 = NSURL(string: "http://ec2-52-21-74-14.compute-1.amazonaws.com:3000/api/login")!
-    let request = NSMutableURLRequest(url: url2 as URL)
+        
+        
+        let url = NSURL(string: "http://ec2-52-21-74-14.compute-1.amazonaws.com:3000/api/addUser")!
+        let url2 = NSURL(string: "http://ec2-52-21-74-14.compute-1.amazonaws.com:3000/api/login")!
+        var resstr = ""
+        let url3 = NSURL(string: "http://ubuntu@ec2-54-153-112-71.us-west-1.compute.amazonaws.com:3000/api/addUser")!
+        let request = NSMutableURLRequest(url: url3 as URL)
         request.httpMethod = "POST"
         
         
@@ -239,13 +337,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         //let string = "pass"
         
         request.httpBody = jsonObject.data(using: .utf8)
-    print("calling senddata 3")
+        //   print("calling senddata 3")
         let task = URLSession.shared.dataTask(with: request as URLRequest){
             data, response, error in
             
             // Check for error
             if error != nil {
-                print("error=\(error)")
+                //          print("error=\(error)")
                 return
             }
             
@@ -254,23 +352,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             print("calling senddata 4")
             print("responseString = \(responseString)")
             
+            
+            resstr = (responseString as? String)!
+            print("res =\(resstr)")
+            
+            
+            let nc = NotificationCenter.default
+            nc.post(name:Notification.Name(rawValue:"MyNotification"),
+                    object: nil,
+                    userInfo: ["message":resstr, "date":Date()])
+            
+            
+            // return resstr
+            // let obj = []
+            
             do {
-
+                
                 
             } catch let error as NSError {
-                print("Error Occurred")
-                print(error.localizedDescription)
+                //           print("Error Occurred")
+                //           print(error.localizedDescription)
             }
             
         }
         
         task.resume()
-    
         
+        
+        
+        //if(resstr != ""){
+        return "hello"
+        //}
+        
+    }
     
-
-
-
-}
-
+    
+    
 }
