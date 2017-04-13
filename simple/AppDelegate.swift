@@ -9,17 +9,28 @@
 import UIKit
 import FacebookCore
 import Firebase
+import AVFoundation
+import ApiAI
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let apiai = ApiAI.shared()!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        
+        //Api.AI code
+        let configuration: AIConfiguration = AIDefaultConfiguration()
+        
+        configuration.clientAccessToken = "579a919c90854cdfa055fc28f3fd5b9b"
+        
+        apiai.configuration = configuration
+        
+        
         return true
     }
 

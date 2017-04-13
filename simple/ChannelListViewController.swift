@@ -29,6 +29,16 @@ enum Section: Int {
 }
 
 class ChannelListViewController: UITableViewController {
+    @IBAction func assistant(_ sender: Any) {
+    
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "assist")
+        self.present(controller, animated: true, completion: nil)
+        
+     self.performSegue(withIdentifier: "assistant", sender: nil)
+        
+    
+    }
 
   // MARK: Properties
   var senderDisplayName: String?

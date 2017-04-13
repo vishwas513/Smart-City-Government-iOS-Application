@@ -21,4 +21,11 @@
 #import "Applozic/ALConversationService.h"
 */
 
+
+#import <ApiAI/ApiAI.h>
+#import <ApiAI/AIDefaultConfiguration.h>
+#import <ApiAI/AIVoiceRequestButton.h>
+
+#import <MBProgressHUD/MBProgressHUD.h>
+
 #endif /* simple_bridging_header_h */
