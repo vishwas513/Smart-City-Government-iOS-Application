@@ -10,8 +10,10 @@ import Foundation
 import UIKit
 import ApiAI
 import MBProgressHUD
+import s3c
+import ApiAI
 
-class AssistantViewController : UIViewController {
+class AssistantViewController : s3c {
 
 
     @IBOutlet weak var textField: UITextField!
@@ -19,6 +21,31 @@ class AssistantViewController : UIViewController {
     @IBOutlet weak var optextview: UITextView!
 
 
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //Optional
+        let item = [
+            "from": "Digital Assistant",
+            "message": "Hi , How may i assist you?",
+            //"image": UIImage(named: "placeholder")
+        ] as [String : Any]
+        s3c_struct.messages.insert(item, at: 0)
+      //  s3c_struct.button.addTarget(self, action: #selector(self.sendMessage), for: .touchUpInside)
+        //Required
+        initializeChat()
+        
+//        
+//        let text: String = (s3c_struct.input.text)!
+//        let from: String = s3c_struct.user1_name
+//        
+//        s3c_struct.input.text = ""
+//        
+//        addMessage(text: text, from: from)
+//        
+        
+    }
 
     @IBAction func sendText(_ sender: Any) {
     
@@ -27,8 +54,9 @@ class AssistantViewController : UIViewController {
         self.textField?.resignFirstResponder()
         
         let request = ApiAI.shared().textRequest()
-        
-        if let text = self.textField?.text {
+       
+//         if let text = self.textField?.text {
+        if let text = (s3c_struct.input?.text) {
             request?.query = [text]
         } else {
             request?.query = [""]
@@ -71,8 +99,22 @@ class AssistantViewController : UIViewController {
             
            // let json = try? JSONSerialization.jsonObject(with: rdata, options: [])
             print(speech)
+            
+    
+            let item = [
+                "from": "Digital Assistant",
+                "message": speech,
+                //"image": UIImage(named: "placeholder")
+                ] as [String : Any]
+            s3c_struct.messages.insert(item, at: 0)
+            
+            s3c_struct.button.addTarget(self, action: #selector(self.sendMessage), for: .touchUpInside)
+
+            
+            
            
-            self.optextview.text = speech.description
+           // s3c().addMessage(text: "Hi", from: "3rd Party")
+          //  self.optextview.text = speech.description
             
             
             }, failure: { (request, error) -> Void in
