@@ -27,7 +27,7 @@ class AssistantViewController : s3c {
         
         //Optional
         let item = [
-            "from": "Digital Assistant",
+            "from": "ASSISTANT",
             "message": "Hi , How may i assist you?",
             //"image": UIImage(named: "placeholder")
         ] as [String : Any]

@@ -108,6 +108,7 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
         s3c_struct.messagesContainer.estimatedRowHeight = 100
         s3c_struct.messagesContainer.transform = CGAffineTransform.init(rotationAngle: CGFloat(-M_PI))
         s3c_struct.messagesContainer.rowHeight = UITableViewAutomaticDimension
+        //s3c_struct.messagesContainer.text
         
         print("Adding swift 3 chat views")
        view.addSubview(s3c_struct.input)
@@ -201,7 +202,10 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 "message": speech,
                 //"image": UIImage(named: "placeholder")
                 ] as [String : Any]
-            self.addMessage(text: speech as String, from: "assistant")
+            
+            TextToSpeech().speakText(text: speech as String)
+            
+            self.addMessage(text: speech as String, from: "ASSISTANT")
             
             //s3c_struct.button.addTarget(self, action: #selector(self.sendMessage), for: .touchUpInside)
             
@@ -222,7 +226,7 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         s3c_struct.input.text = ""
         
-    addMessage(text: text, from: "user")
+    addMessage(text: text, from: "VISHWAS MUKUND")
     
         
     }
