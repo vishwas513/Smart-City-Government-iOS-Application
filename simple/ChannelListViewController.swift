@@ -44,6 +44,20 @@ class ChannelListViewController: UITableViewController {
   var senderDisplayName: String?
   var newChannelTextField: UITextField?
   
+    @IBAction func chatexit2(_ sender: Any) {
+   
+    
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "menu")
+        self.present(controller, animated: true, completion: nil)
+
+    
+    
+    
+    }
+    
+    
+    
   private var channelRefHandle: FIRDatabaseHandle?
   private var channels: [Channel] = []
   

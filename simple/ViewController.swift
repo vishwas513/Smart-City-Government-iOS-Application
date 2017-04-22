@@ -54,6 +54,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         output2.text = "Login successful"
         output2.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        let jsonObject = ["emailID":username.text!,"password" :pwd.text! as! AnyObject] as [String : Any]
+        var resp = sendlogindata(jsonObject: jsonObject.description)
+        print("resp on login \(resp)")
+        
         self.performSegue(withIdentifier: "loginmenu", sender: nil)
         
         
@@ -91,8 +95,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             print("s=\(resp)")
             }
             
-            output.text = "Incorrect Username/ Password, please try again"
-            output.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+           // output.text = "Incorrect Username/ Password, please try again"
+           // output.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
             //sleep(2)
             
             //output.isHidden = true
@@ -330,6 +334,78 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         var resstr = ""
         let url3 = NSURL(string: "http://ubuntu@ec2-54-153-112-71.us-west-1.compute.amazonaws.com:3000/api/addUser")!
         let request = NSMutableURLRequest(url: url3 as URL)
+        request.httpMethod = "POST"
+        
+        
+        
+        //let string = "pass"
+        
+        request.httpBody = jsonObject.data(using: .utf8)
+        //   print("calling senddata 3")
+        let task = URLSession.shared.dataTask(with: request as URLRequest){
+            data, response, error in
+            
+            // Check for error
+            if error != nil {
+                //          print("error=\(error)")
+                return
+            }
+            
+            // Print out response string
+            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print("calling senddata 4")
+            print("responseString = \(responseString)")
+            
+            
+            resstr = (responseString as? String)!
+            print("res =\(resstr)")
+            
+            
+            let nc = NotificationCenter.default
+            nc.post(name:Notification.Name(rawValue:"MyNotification"),
+                    object: nil,
+                    userInfo: ["message":resstr, "date":Date()])
+            
+            
+            // return resstr
+            // let obj = []
+            
+            do {
+                
+                
+            } catch let error as NSError {
+                //           print("Error Occurred")
+                //           print(error.localizedDescription)
+            }
+            
+        }
+        
+        task.resume()
+        
+        
+        
+        //if(resstr != ""){
+        return "hello"
+        //}
+        
+    }
+    
+    
+    
+    func sendlogindata (jsonObject:String) -> String{
+        
+        // let jsonData = JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted, error: nil)
+        
+        //   print("calling senddata 2")
+        
+        
+        
+        
+        let url = NSURL(string: "http://ec2-52-21-74-14.compute-1.amazonaws.com:3000/api/addUser")!
+        let loginurl = NSURL(string: "http://ubuntu@ec2-54-153-112-71.us-west-1.compute.amazonaws.com:3000/api/login")!
+        var resstr = ""
+        let url3 = NSURL(string: "http://ubuntu@ec2-54-153-112-71.us-west-1.compute.amazonaws.com:3000/api/addUser")!
+        let request = NSMutableURLRequest(url: loginurl as URL)
         request.httpMethod = "POST"
         
         

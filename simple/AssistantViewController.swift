@@ -12,6 +12,8 @@ import ApiAI
 import MBProgressHUD
 import s3c
 import ApiAI
+import Benchmark
+
 
 class AssistantViewController : s3c {
 

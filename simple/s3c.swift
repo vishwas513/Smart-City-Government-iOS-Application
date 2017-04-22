@@ -9,6 +9,8 @@
 import UIKit
 import ApiAI
 import MBProgressHUD
+import Benchmark
+import QuartzCore
 
 public struct s3c_struct {
     static var offset: Int = 0
@@ -108,10 +110,11 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
         s3c_struct.messagesContainer.estimatedRowHeight = 100
         s3c_struct.messagesContainer.transform = CGAffineTransform.init(rotationAngle: CGFloat(-M_PI))
         s3c_struct.messagesContainer.rowHeight = UITableViewAutomaticDimension
+       // s3c_struct.messagesContainer.backgroundColor = #colorLiteral(red: 0.011009207, green: 0.7792026401, blue: 1, alpha: 1)
         //s3c_struct.messagesContainer.text
         
         print("Adding swift 3 chat views")
-       view.addSubview(s3c_struct.input)
+        view.addSubview(s3c_struct.input)
         view.addSubview(s3c_struct.button)
         view.addSubview(s3c_struct.messagesContainer)
         
@@ -129,15 +132,41 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "chatCell")
         
+        
+        cell.layer.cornerRadius=10 //set corner radius here
+        cell.layer.borderColor = UIColor.black.cgColor  // set cell border color here
+        cell.layer.borderWidth = 2 // set border width here
+        
+        
         let message = s3c_struct.messages[indexPath.row]
         cell.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI))
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = (message["from"] as! String) + " said:\n" + (message["message"] as! String)
         cell.imageView?.image = message["image"] as? UIImage
-        cell.backgroundColor = UIColor.white
+        cell.backgroundColor = #colorLiteral(red: 0.011009207, green: 0.7792026401, blue: 1, alpha: 1)
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,forRowAt indexPath: IndexPath)
+    {
+        if (indexPath.row % 2 == 0)
+        {
+            //cell.backgroundColor = UIColor.white
+            cell.backgroundColor = #colorLiteral(red: 0.06350831687, green: 0.5272518992, blue: 1, alpha: 1)
+        } else {
+            cell.backgroundColor = UIColor.white
+            //cell.backgroundColor = colorForIndex(index: indexPath.row)
+        }
+    }
+    
+//    func colorForIndex(index: Int) -> UIColor
+//    {
+//        let itemCount = conversation.count
+//        let color = (CGFloat(index) / CGFloat(itemCount)) * 0.6
+////        return UIColor(red: 0.92, green: 0.92, blue: 0.92, alpha: 1.0)
+//          r
+//    }
     
     @objc func sendMessage() {
         
@@ -177,6 +206,9 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
         })
         
         
+        Benchmark.measure() {
+        
+            //print(self)
         request?.setCompletionBlockSuccess({[unowned self] (request, response) -> Void in
             // let resultNavigationController = self.storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultNavigationController
             
@@ -219,7 +251,7 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
             }, failure: { (request, error) -> Void in
                 //   hud.hide(animated: true)
         });
-        
+        }
         ApiAI.shared().enqueue(request)
         
         
