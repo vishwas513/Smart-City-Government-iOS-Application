@@ -86,8 +86,8 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 width: 100,
                 height: 40
             )
-            s3c_struct.buttonDict["bg"] = UIColor.blue
-            s3c_struct.buttonDict["color"] = UIColor.white
+            s3c_struct.buttonDict["color"] = UIColor.blue
+            s3c_struct.buttonDict["bg"] = UIColor.white
             s3c_struct.buttonDict["title"] = "Send"
         }
         
@@ -135,7 +135,7 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         cell.layer.cornerRadius=10 //set corner radius here
         cell.layer.borderColor = UIColor.black.cgColor  // set cell border color here
-        cell.layer.borderWidth = 2 // set border width here
+        cell.layer.borderWidth = 1 // set border width here
         
         
         let message = s3c_struct.messages[indexPath.row]
@@ -155,7 +155,7 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
             //cell.backgroundColor = UIColor.white
             cell.backgroundColor = #colorLiteral(red: 0.06350831687, green: 0.5272518992, blue: 1, alpha: 1)
         } else {
-            cell.backgroundColor = UIColor.white
+            cell.backgroundColor = #colorLiteral(red: 0.9022669196, green: 0.9015806317, blue: 0.9233793616, alpha: 1)
             //cell.backgroundColor = colorForIndex(index: indexPath.row)
         }
     }
