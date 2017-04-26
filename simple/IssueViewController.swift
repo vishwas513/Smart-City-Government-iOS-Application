@@ -9,32 +9,72 @@
 import Foundation
 import CoreLocation
 import MultiAutoCompleteTextSwift
+import ZGTooltipView
+import Toaster
 
 class IssueViewController : UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var date: UILabel!
+    
+    
     @IBOutlet weak var labelloc: UITextField!
     
     var locationManager: CLLocationManager = CLLocationManager()
     var startLocation: CLLocation!
     var areaname:String = ""
 
+    
+    
+    
+    
+    
     //@IBOutlet weak var locationlabel: MultiAutoCompleteTextField!
     @IBOutlet weak var locationlabel: MultiAutoCompleteTextField!
     @IBAction func datePickerLauncher(_ sender: Any) {
     
         if(datepicker.isHidden == false){
         
-        date.text = datepicker.date.description
+        
+        let datef = DateFormatter()
+            datef.dateStyle = DateFormatter.Style.medium
+            
+           // date.timeStyle = DateFormatter.Style.medium
+            
+          //  date.text = datepicker.date.
         datepicker.isHidden = true
+            
         
         }
         else if(datepicker.isHidden == true){
             
             datepicker.isHidden = false
             
+           // datePickerView.datePickerMode = UIDatePickerMode.Date
+            
+           // sender.inputView = datePickerView
+            
+           // datePickerView.addTarget(self, action: #selector(ViewController.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
+       // setTooltip(ZGTooltipView(direction: .Top, text: "Lorem ipsum dolor sit amet"))
+            //datepicker.setTooltip(ZGTooltipView(direction: .top, text: "Lorem ipsum dolor sit amet"))
+            datepicker.datePickerMode = UIDatePickerMode.date
+           datepicker.addTarget(self, action: #selector(IssueViewController.datePickerValueChanged), for: UIControlEvents.valueChanged)
+            
+            
         }
     
+        
+    }
+    
+    
+    func datePickerValueChanged(sender:UIDatePicker) {
+        
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        
+       // dateFormatter.timeStyle = DateFormatter.Style.medium
+        
+        date.text = dateFormatter.string(from: sender.date)
         
     }
 
@@ -48,6 +88,26 @@ class IssueViewController : UIViewController, CLLocationManagerDelegate {
    
 
     @IBAction func issueclick(_ sender: Any) {
+   
+    
+    let jsonobject2 = ("{"  + " " + "\"user_id\"" + ":" + "\"" + "vishwas@gmail.com" + "\"" + ","
+                            + "\"description\"" + ":" + "\"" + self.desc.text! + "\"" + ","
+                            + "\"images\"" + ":" + "\"" + "fvfvdsfvddddd" + "\"" + ","
+                            + "\"category\"" + ":" + "\"" + self.category.text! + "\"" + ","
+                            + "\"location\"" + ":" + "\"" + self.locationlabel.text! + "\"" + ","
+                            + "\"date\"" + ":" + "\"" + self.date.text! + "\"" + ","
+                            + "\"status\"" + ":" + "\"" + "Open" + "\""
+        
+                            + " " + "}")
+        
+    
+        print(jsonobject2)
+    var resp = senddata(jsonObject: jsonobject2)
+        
+        
+    
+    
+    
     }
     
     override func viewDidLoad() {
@@ -97,6 +157,90 @@ class IssueViewController : UIViewController, CLLocationManagerDelegate {
         
         
     }
+    
+    
+    func senddata (jsonObject:String) -> String{
+        
+        // let jsonData = JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted, error: nil)
+        
+        //   print("calling senddata 2")
+        
+        
+        
+        
+       // let url = NSURL(string: "http://ec2-52-21-74-14.compute-1.amazonaws.com:3000/api/addUser")!
+       // let url2 = NSURL(string: "http://ec2-52-21-74-14.compute-1.amazonaws.com:3000/api/login")!
+        var resstr = ""
+        let url3 = NSURL(string: "http://ubuntu@ec2-54-153-112-71.us-west-1.compute.amazonaws.com:3000/api/users/addissue")!
+        let request = NSMutableURLRequest(url: url3 as URL)
+        request.httpMethod = "POST"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        
+        
+        
+        //let string = "pass"
+        
+        request.httpBody = jsonObject.data(using: .utf8)
+        //   print("calling senddata 3")
+        let task = URLSession.shared.dataTask(with: request as URLRequest){
+            data, response, error in
+            
+            // Check for error
+            if error != nil {
+                //          print("error=\(error)")
+                return
+            }
+            
+            // Print out response string
+            let responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)
+            print("calling senddata 6")
+            print("responseString = \(responseString)")
+            
+            
+            resstr = (responseString as? String)!
+            print("res =\(resstr)")
+            
+            DispatchQueue.main.async {
+                
+            
+            Toast(text: "Issue Created !!").show()
+            self.date.text = ""
+            self.category.text = ""
+            self.locationlabel.text = ""
+            self.desc.text = ""
+            
+            }
+            
+            
+            let nc = NotificationCenter.default
+            nc.post(name:Notification.Name(rawValue:"MyNotification"),
+                    object: nil,
+                    userInfo: ["message":resstr, "date":Date()])
+            
+            
+            // return resstr
+            // let obj = []
+            
+            do {
+                
+                
+            } catch let error as NSError {
+                //           print("Error Occurred")
+                //           print(error.localizedDescription)
+            }
+            
+        }
+        
+        task.resume()
+        
+        
+        
+        //if(resstr != ""){
+        return resstr
+        //}
+        
+    }
+    
     
     
     @objc(locationManager:didUpdateLocations:) func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

@@ -10,7 +10,8 @@ import UIKit
 import CoreLocation
 import Foundation
 //import FacebookLogin
-import ILPDFKit
+//import ILPDFKit
+import ZGTooltipView
 
 
 
@@ -28,6 +29,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     //LOGIN Outlets
     @IBOutlet var username: UITextField!
+    
     @IBOutlet var pwd: UITextField!
     @IBOutlet var output2: UILabel!
     
@@ -221,10 +223,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBOutlet var locationlabel: UILabel!
-    var pdfVC : ILPDFViewController? = nil
+   // var pdfVC : ILPDFViewController? = nil
     
     
     
+    @IBOutlet weak var loginbutton: UIButton!
     
     
     
@@ -240,6 +243,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
+        //loginbutton.setTooltip(ZGTooltipView(direction: .top, text: "Lorem ipsum dolor sit amet"))
+        
+       // email.setTooltip(ZGTooltipView(direction: .top, text: "Lorem ipsum dolor sit amet"))
+        //password.setTooltip(ZGTooltipView(direction: .top, text: "Lorem ipsum dolor sit amet"))
+        //fullName.setTooltip(ZGTooltipView(direction: .top, text: "Lorem ipsum dolor sit amet"))
+        
         
         
         //   print("area \(areaname)")

@@ -11,6 +11,7 @@ import ApiAI
 import MBProgressHUD
 import Benchmark
 import QuartzCore
+import ZGTooltipView
 
 public struct s3c_struct {
     static var offset: Int = 0
@@ -96,6 +97,7 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
             s3c_struct.button.backgroundColor = (s3c_struct.buttonDict["bg"] as! UIColor)
             s3c_struct.button.tintColor = s3c_struct.buttonDict["color"] as! UIColor
             s3c_struct.button.setTitle((s3c_struct.buttonDict?["title"] as! String), for: .normal)
+           // s3c_struct.button.setTooltip(ZGTooltipView(direction: .top, text: "Lorem ipsum dolor sit amet"))
         }
         
       //  s3c_struct.user1_photo = s3c_struct.user1_photo.resizeImage(targetSize: CGSize(width: s3c_struct.photoSize, height: s3c_struct.photoSize))

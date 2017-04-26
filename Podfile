@@ -15,12 +15,14 @@ target 'simple' do
     pod 'JSQMessagesViewController'
     pod 'Charts/Realm'
     pod 'FeedKit'
-    pod 'ILPDFKit'
+    
     pod 'ApiAI'
     pod 'MBProgressHUD'
     pod "s3c"
     pod "Benchmark"
     pod "MultiAutoCompleteTextSwift"
+    pod "ZGTooltipView"
+    pod "Toaster"
     
     
 	
