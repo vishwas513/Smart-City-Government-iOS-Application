@@ -23,6 +23,7 @@
 		6F914F9A1DEBDC7600F50222 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F914F981DEBDC7600F50222 /* Main.storyboard */; };
 		6F914F9C1DEBDC7600F50222 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F914F9B1DEBDC7600F50222 /* Assets.xcassets */; };
 		6F914F9F1DEBDC7600F50222 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F914F9D1DEBDC7600F50222 /* LaunchScreen.storyboard */; };
+		E9252A2B1EB14B1C00288AF2 /* headerbg.png in Resources */ = {isa = PBXBuildFile; fileRef = E9252A2A1EB14B1C00288AF2 /* headerbg.png */; };
 		E92E03361EA70F7200D1424C /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E03351EA70F7200D1424C /* IssueViewController.swift */; };
 		E93E425E1EA41DEA001D9F98 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93E425D1EA41DEA001D9F98 /* TextToSpeech.swift */; };
 		E947F9D61E7DED3800CBAE73 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E947F9D51E7DED3800CBAE73 /* TableViewCell.swift */; };
@@ -57,6 +58,7 @@
 		6F914F9E1DEBDC7600F50222 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F914FA01DEBDC7600F50222 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CE064917408DEA64E844C44 /* Pods_simple.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_simple.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9252A2A1EB14B1C00288AF2 /* headerbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerbg.png; sourceTree = "<group>"; };
 		E92E03351EA70F7200D1424C /* IssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueViewController.swift; sourceTree = "<group>"; };
 		E93E425D1EA41DEA001D9F98 /* TextToSpeech.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		E947F9D51E7DED3800CBAE73 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				E9756D4E1E9FFC660094F8C7 /* ResultViewController */,
 				6F4116AF1E75FC1C00DEB05E /* GoogleService-Info.plist */,
 				6F70440D1DFF252B00A132A7 /* simple.entitlements */,
+				E9252A2A1EB14B1C00288AF2 /* headerbg.png */,
 				E95AD0A01EA1963E003011E0 /* s3c.swift */,
 				6F914F941DEBDC7600F50222 /* AppDelegate.swift */,
 				E9756D501E9FFC660094F8C7 /* ResultViewController.swift */,
@@ -195,7 +198,7 @@
 				TargetAttributes = {
 					6F914F901DEBDC7600F50222 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 7BHCDJ55EZ;
+						DevelopmentTeam = 6WCHC8E932;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -228,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9252A2B1EB14B1C00288AF2 /* headerbg.png in Resources */,
 				6F4116B01E75FC1C00DEB05E /* GoogleService-Info.plist in Resources */,
 				6F914F9F1DEBDC7600F50222 /* LaunchScreen.storyboard in Resources */,
 				6F914F9C1DEBDC7600F50222 /* Assets.xcassets in Resources */,
@@ -435,7 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = simple/simple.entitlements;
-				DEVELOPMENT_TEAM = 7BHCDJ55EZ;
+				DEVELOPMENT_TEAM = 6WCHC8E932;
 				INFOPLIST_FILE = simple/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -452,7 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = simple/simple.entitlements;
-				DEVELOPMENT_TEAM = 7BHCDJ55EZ;
+				DEVELOPMENT_TEAM = 6WCHC8E932;
 				INFOPLIST_FILE = simple/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -236,7 +236,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
+        //texfield.secureTextEntry = true
         var date = getDate()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self

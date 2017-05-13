@@ -40,6 +40,12 @@ class NewViewController: UIViewController {
             setChart(dataPoints: months, values: unitsSold)
             
             
+        case "GDP of San Jose (2002 - 2013)" :
+            months = ["2005", "", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            let unitsSold  = [69.0,72.0,75.0, 80.0, 84.0, 89.0, 88.0, 82.0, 89.0,95.0, 97.0,100.0]
+            setChart(dataPoints: months, values: unitsSold)
+            
+            
             break
         default : break
         
@@ -66,7 +72,7 @@ class NewViewController: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Units Sold")
+        let chartDataSet = BarChartDataSet(values: dataEntries, label: "1 unit = $1000")
         let chartData = BarChartData(dataSet: chartDataSet)
         Barchart.data = chartData
         

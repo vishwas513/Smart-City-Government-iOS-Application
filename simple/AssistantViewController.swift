@@ -111,7 +111,6 @@ class AssistantViewController : s3c {
             s3c_struct.messages.insert(item, at: 0)
             
             s3c_struct.button.addTarget(self, action: #selector(self.sendMessage), for: .touchUpInside)
-
             
             
            

@@ -23,6 +23,7 @@ target 'simple' do
     pod "MultiAutoCompleteTextSwift"
     pod "ZGTooltipView"
     pod "Toaster"
+    pod "SwiftGifOrigin"
     
     
 	

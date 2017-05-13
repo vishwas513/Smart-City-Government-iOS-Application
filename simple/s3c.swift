@@ -87,8 +87,8 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 width: 100,
                 height: 40
             )
-            s3c_struct.buttonDict["color"] = UIColor.blue
-            s3c_struct.buttonDict["bg"] = UIColor.white
+            s3c_struct.buttonDict["color"] = UIColor.white
+            s3c_struct.buttonDict["bg"] = UIColor.blue
             s3c_struct.buttonDict["title"] = "Send"
         }
         
@@ -174,7 +174,7 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         let text: String = (s3c_struct.input.text)!
         let from: String = s3c_struct.user1_name
-        let hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+       // let hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
         
         //api.ai stuff
         let request = ApiAI.shared().textRequest()
@@ -217,8 +217,8 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
             //  resultNavigationController.response = response as AnyObject?
             
             //  self.present(resultNavigationController, animated: true, completion: nil)
-            
-            hud.hide(animated: true)
+         
+         //   hud.hide(animated: true)
             var resp = response as AnyObject?
             var respstring = resp?.description
             var rdata = resp as! NSDictionary
@@ -240,6 +240,22 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
             TextToSpeech().speakText(text: speech as String)
             
             self.addMessage(text: speech as String, from: "ASSISTANT")
+            
+            if(speech as String == "Opening Dashboard"){
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "DashNav")
+                self.present(controller, animated: true, completion: nil)
+                
+                
+            }
+            
+            if(speech as String == "Opening Menu"){
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let controller = storyboard.instantiateViewController(withIdentifier: "menu")
+                self.present(controller, animated: true, completion: nil)
+                
+                
+            }
             
             //s3c_struct.button.addTarget(self, action: #selector(self.sendMessage), for: .touchUpInside)
             

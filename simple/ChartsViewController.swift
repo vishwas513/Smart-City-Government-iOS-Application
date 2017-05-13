@@ -18,7 +18,8 @@ class ChartsViewController: UIViewController {
         self.objects.append("Crime Rate")
         self.objects.append("Unemployment Rate")
         self.objects.append("Traffic Growth Rate")
-        self.objects.append("GDP")
+        self.objects.append("GDP of San Jose (2002 - 2013)")
+        self.objects.append("Population of San Jose")
         
     }
     
