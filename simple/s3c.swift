@@ -28,10 +28,23 @@ public struct s3c_struct {
     static var buttonDict: NSMutableDictionary!
     static var input: UITextField!
     static var inputDict: NSMutableDictionary!
+    
+    var iflag  = false
+    var cflag = false
+    var lflag = false
+    var dflag = false
+    
 }
 
 class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+    var iflag  = false
+    var cflag = false
+    var lflag = false
+    var dflag = false
+    var fflag = false
+    
+    var category = ""
+    var desc = ""
     public func initializeChat() {
         
         if (s3c_struct.messagesContainerDict == nil) {
@@ -176,6 +189,100 @@ class s3c: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let from: String = s3c_struct.user1_name
        // let hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
         
+        //var wordList = text
+        
+//        var fullNameArr = split(fullName) {$0 == " "}
+//        var wordarr = wordList.split(wordList) {$0 == ""}
+        let array = text.components(separatedBy: " ")
+        
+        
+        
+        
+        
+        var loc = "San Jose"
+        var date = "04/16/2017"
+        
+        
+        for i in array {
+//            print("Hello, \(name)!")
+            
+            if(i == "issue" || i == "Issue"){
+             
+                print("The truth")
+                iflag = true
+                
+//                let jsonobject2 = ("{"  + " " + "\"user_id\"" + ":" + "\"" + "vishwas@gmail.com" + "\"" + ","
+//                    + "\"description\"" + ":" + "\"" + desc + "\"" + ","
+//                    + "\"images\"" + ":" + "\"" + "fvfvdsfvddddd" + "\"" + ","
+//                    + "\"category\"" + ":" + "\"" + category + "\"" + ","
+//                    + "\"location\"" + ":" + "\"" + loc + "\"" + ","
+//                    + "\"date\"" + ":" + "\"" + date + "\"" + ","
+//                    + "\"status\"" + ":" + "\"" + "Open" + "\""
+//                    
+//                    + " " + "}")
+//                
+//                IssueViewController().senddata(jsonObject: jsonobject2)
+                
+                
+                
+            }
+            
+            if(iflag == true && (i == "Safety"||i == "unemployment" || i == "crime" || i == "safety"||i == "Unemployment" || i == "Crime")) {
+            
+                iflag = false
+                category = i
+                cflag = true
+            
+            
+            
+            }
+            
+            if(cflag == true && (i == "yes"||i == "Yes")){
+            
+            cflag = false
+            lflag = true
+            break
+            
+        }
+            
+            if(lflag == true && (i == "yes"||i == "Yes")){
+                
+                lflag = false
+                dflag = true
+                break
+                
+                
+                
+            }
+            
+            if(dflag == true ){
+                
+                dflag == false
+            
+                fflag = true
+                
+                desc = i
+                
+                
+            }
+        
+        }
+        
+        if(fflag == true){
+            
+            fflag = false
+        let jsonobject2 = ("{"  + " " + "\"user_id\"" + ":" + "\"" + "vishwas@gmail.com" + "\"" + ","
+            + "\"description\"" + ":" + "\"" + desc + "\"" + ","
+            + "\"images\"" + ":" + "\"" + "fvfvdsfvddddd" + "\"" + ","
+            + "\"category\"" + ":" + "\"" + category + "\"" + ","
+            + "\"location\"" + ":" + "\"" + loc + "\"" + ","
+            + "\"date\"" + ":" + "\"" + date + "\"" + ","
+            + "\"status\"" + ":" + "\"" + "Open" + "\""
+            
+            + " " + "}")
+        
+        IssueViewController().senddata(jsonObject: jsonobject2)
+        }
         //api.ai stuff
         let request = ApiAI.shared().textRequest()
        

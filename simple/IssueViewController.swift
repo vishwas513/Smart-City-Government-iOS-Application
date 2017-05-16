@@ -204,10 +204,14 @@ class IssueViewController : UIViewController, CLLocationManagerDelegate {
                 
             
             Toast(text: "Issue Created !!").show()
-            self.date.text = ""
-            self.category.text = ""
-            self.locationlabel.text = ""
-            self.desc.text = ""
+            
+            
+            
+//            self.date.text = ""
+//
+//            self.category.text = ""
+//            self.locationlabel.text = ""
+//            self.desc.text = ""
             
             }
             
