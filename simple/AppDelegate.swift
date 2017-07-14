@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Api.AI code
         let configuration: AIConfiguration = AIDefaultConfiguration()
         
-        configuration.clientAccessToken = "579a919c90854cdfa055fc28f3fd5b9b"
+        configuration.clientAccessToken = ""
         
         apiai.configuration = configuration
         

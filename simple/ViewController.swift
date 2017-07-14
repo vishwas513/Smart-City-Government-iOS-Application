@@ -426,10 +426,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         print("Light:\(jsonObject.description)")
         
-        let url = NSURL(string: "http://ec2-52-21-74-14.compute-1.amazonaws.com:3000/api/addUser")!
-        let loginurl = NSURL(string: "http://ubuntu@ec2-54-153-112-71.us-west-1.compute.amazonaws.com:3000/api/login")!
+        let url = NSURL(string: "")!
+        let loginurl = NSURL(string: "")!
        var resstr = ""
-        let url3 = NSURL(string: "http://ubuntu@ec2-54-153-112-71.us-west-1.compute.amazonaws.com:3000/api/addUser")!
+        let url3 = NSURL(string: "")!
         let request = NSMutableURLRequest(url: loginurl as URL)
         request.httpMethod = "POST"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
